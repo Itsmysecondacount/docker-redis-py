@@ -4,6 +4,7 @@
 import motor.motor_asyncio
 from model import Timbre
 
+
 client = motor.motor_asyncio.AsyncIOMotorClient('mongodb://localhost:27017/')
 database = client.timbre
 collection = database.timbrada
@@ -15,7 +16,7 @@ async def recuperar_timbres():
         timbres.append(Timbre(**document))
     return timbres
 
-async def timbrada(todo):
-    document = todo
+async def timbrada(timbre):
+    document = timbre
     result = await collection.insert_one(document)
     return document
