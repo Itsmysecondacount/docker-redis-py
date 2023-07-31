@@ -6,8 +6,8 @@ r = redis.Redis(host='redis', port=6379, db=0)
 
 def fetch_all_todos():
     todos = []
-    for key in redis.keys('*'):
-        value = redis.get(key)
+    for key in r.keys('*'):
+        value = r.get(key)
         value = json.loads(value.decode("utf-8"))  # decodificar y convertir de JSON
         todos.append(Timbre(**value))
     return todos
