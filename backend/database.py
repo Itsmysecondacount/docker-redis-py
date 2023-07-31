@@ -1,7 +1,7 @@
 import aioredis
 from model import Timbre
 
-redis = aioredis.from_url("redis://localhost")
+redis = aioredis.from_url("redis://redis:6379")
 
 async def fetch_all_todos():
     keys = await redis.keys('timbre:*')
