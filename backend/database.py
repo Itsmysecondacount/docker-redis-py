@@ -1,13 +1,14 @@
 import redis
 from model import Timbre
+import json
 
 r = redis.Redis(host='redis', port=6379, db=0)
 
 def fetch_all_todos():
-    keys = [key.decode() for key in r.keys('timbre:*')]
     todos = []
-    for key in keys:
-        value = r.get(key)
+    for key in redis.keys('*'):
+        value = redis.get(key)
+        value = json.loads(value.decode("utf-8"))  # decodificar y convertir de JSON
         todos.append(Timbre(**value))
     return todos
 
