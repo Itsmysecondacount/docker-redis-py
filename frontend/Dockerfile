@@ -11,8 +11,13 @@ ENV PATH /app/node_modules/.bin:$PATH
 # Install application dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
-COPY . ./
+COPY package.json ./
+COPY package-lock.json ./
+
+# Install dependencies
 RUN npm install
+
+RUN npm install -g create-vite
 
 # Copy the app
 COPY . ./
