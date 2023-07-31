@@ -1,7 +1,7 @@
 import redis
 from model import Timbre
 
-r = redis.Redis(host='redis-py', port=6379, db=0)
+r = redis.Redis(host='redis', port=6379, db=0)
 
 def fetch_all_todos():
     keys = [key.decode() for key in r.keys('timbre:*')]
