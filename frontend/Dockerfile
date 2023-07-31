@@ -6,6 +6,7 @@ FROM node:20-alpine3.17
 WORKDIR /app
 
 # Add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules:$PATH
 ENV PATH /app/node_modules/.bin:$PATH
 
 # Install application dependencies
