@@ -13,6 +13,15 @@ services:
     depends_on: 
       - redis
 
+  my-react-app:
+    build: 
+      context: ./frontend  # Asegúrate de reemplazar esto con el camino correcto a tu app React
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/app    # Asegúrate de reemplazar esto con el camino correcto a tu app React
+    ports:
+      - 5173:5173
+
   redis:
     image: redis:7.2-rc3-alpine
     volumes:
