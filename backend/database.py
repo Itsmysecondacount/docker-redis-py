@@ -9,7 +9,7 @@ def fetch_all_todos():
     for key in r.keys('*'):
         value = r.get(key)
         value = value.decode("utf-8")
-        todos.append(Timbre(**value))
+        todos.append(value)
     return todos
 
 def create_todo(todo):
