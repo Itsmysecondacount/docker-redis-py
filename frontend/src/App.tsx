@@ -15,7 +15,7 @@ const App: React.FC = () => {
 
   const addTimbre = (timbre: Timbre) => {
     // sustituye 'http://localhost:8000/api/timbre' con la URL de tu API
-    fetch('http://ip172-18-0-61-cj41qvksnmng00e1mcfg-8000.direct.labs.play-with-docker.com/api/timbre', {
+    fetch('http://ip172-18-0-61-cj41qvksnmng00e1mcfg-8000.direct.labs.play-with-docker.com/api/timbre/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
