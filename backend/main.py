@@ -5,8 +5,8 @@ from model import Timbre
 from datetime import datetime
 
 from database import (
-    recuperar_timbres,
-    timbrada
+    fetch_all_todos,
+    create_todo
 )
 
 # an HTTP-specific exception class  to generate exception information
@@ -36,14 +36,14 @@ async def read_root():
 
 @app.get("/api/timbre")
 async def get_timbre():
-    response = await recuperar_timbres()
+    response = await fetch_all_todos()
     return response
 
 @app.post("/api/timbre/", response_model=Timbre)
 async def post_timbre(timbre: Timbre):
     data = timbre.dict()
     data["datetime"] = datetime.now()
-    response = await timbrada(data)
+    response = await create_todo(data)
     if response:
         #Aquí me comunico con telegram
         #Aquí mando una solicitud http al arduino de mi cuarto

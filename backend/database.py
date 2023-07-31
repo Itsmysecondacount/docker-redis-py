@@ -1,22 +1,17 @@
-#  @bekbrace
-#  FARMSTACK Tutorial - Sunday 13.06.2021
-
-import motor.motor_asyncio
+import aioredis
 from model import Timbre
 
+redis = aioredis.from_url("redis://localhost")
 
-client = motor.motor_asyncio.AsyncIOMotorClient('mongodb://localhost:27017/')
-database = client.timbre
-collection = database.timbrada
+async def fetch_all_todos():
+    keys = await redis.keys('timbre:*')
+    todos = []
+    for key in keys:
+        value = await redis.get(key)
+        todos.append(Timbre(**value))
+    return todos
 
-async def recuperar_timbres():
-    timbres = []
-    cursor = collection.find({})
-    async for document in cursor:
-        timbres.append(Timbre(**document))
-    return timbres
-
-async def timbrada(timbre):
-    document = timbre
-    result = await collection.insert_one(document)
-    return document
+async def create_todo(todo):
+    key = f"timbre:{todo.datetime}"
+    await redis.set(key, todo)
+    return todo
