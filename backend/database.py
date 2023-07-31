@@ -8,7 +8,7 @@ def fetch_all_todos():
     todos = []
     for key in r.keys('*'):
         value = r.get(key)
-        value = json.loads(value.decode("utf-8"))  # decodificar y convertir de JSON
+        value = value.decode("utf-8")
         todos.append(Timbre(**value))
     return todos
 
