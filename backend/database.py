@@ -1,17 +1,17 @@
-import aioredis
+import redis
 from model import Timbre
 
-redis = aioredis.from_url("redis://redis:6379")
+r = redis.Redis(host='redis-py', port=6379, db=0)
 
-async def fetch_all_todos():
-    keys = await redis.keys('timbre:*')
+def fetch_all_todos():
+    keys = [key.decode() for key in r.keys('timbre:*')]
     todos = []
     for key in keys:
-        value = await redis.get(key)
+        value = r.get(key)
         todos.append(Timbre(**value))
     return todos
 
-async def create_todo(todo):
+def create_todo(todo):
     key = f"timbre:{todo.datetime}"
-    await redis.set(key, todo)
+    r.set(key, todo)
     return todo
