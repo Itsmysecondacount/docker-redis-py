@@ -36,7 +36,7 @@ async def read_root():
 
 @app.get("/api/timbre")
 async def get_timbre():
-    response = await fetch_all_todos()
+    response = fetch_all_todos()
     return response
 
 @app.post("/api/timbre/", response_model=Timbre)
