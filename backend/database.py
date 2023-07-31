@@ -12,6 +12,6 @@ def fetch_all_todos():
     return todos
 
 def create_todo(todo):
-    key = f"timbre:{todo.datetime}"
+    key = f"timbre:{todo['datetime']}"
     r.set(key, todo)
     return todo
