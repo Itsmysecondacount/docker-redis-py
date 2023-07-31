@@ -8,14 +8,14 @@ const App: React.FC = () => {
 
   React.useEffect(() => {
     // sustituye 'http://localhost:8000/api/timbre' con la URL de tu API
-    fetch('http://my-python-app:8000/api/timbre')
+    fetch('http://ip172-18-0-61-cj41qvksnmng00e1mcfg-8000.direct.labs.play-with-docker.com/api/timbre')
       .then((response) => response.json())
       .then(setTimbres);
   }, []);
 
   const addTimbre = (timbre: Timbre) => {
     // sustituye 'http://localhost:8000/api/timbre' con la URL de tu API
-    fetch('http://my-python-app:8000/api/timbre', {
+    fetch('http://ip172-18-0-61-cj41qvksnmng00e1mcfg-8000.direct.labs.play-with-docker.com/api/timbre', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
