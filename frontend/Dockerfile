@@ -16,10 +16,6 @@ COPY . .
 # Install dependencies
 RUN npm install
 
-RUN npm install -g create-vite
-
-# Copy the app
-COPY . ./
 
 # Start the app
 CMD ["npm", "run", "dev"]
