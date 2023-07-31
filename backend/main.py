@@ -43,7 +43,7 @@ async def get_timbre():
 async def post_timbre(timbre: Timbre):
     data = timbre.dict()
     data["datetime"] = datetime.now()
-    response = await create_todo(data)
+    response = create_todo(data)
     if response:
         #Aquí me comunico con telegram
         #Aquí mando una solicitud http al arduino de mi cuarto
