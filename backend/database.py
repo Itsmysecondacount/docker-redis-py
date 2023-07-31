@@ -14,7 +14,7 @@ def fetch_all_todos():
     return todos
 
 def create_todo(todo):
-    key = f"timbre:{todo['datetime']}"
+    key = f"timbre:{str(todo['datetime'])}"
     # convierte el objeto todo a una cadena JSON antes de guardarla
     todo_str = json.dumps(todo)
     r.set(key, todo_str)
