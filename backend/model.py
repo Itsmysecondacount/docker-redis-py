@@ -9,4 +9,4 @@ from typing import Optional
 
 class Timbre(BaseModel):
     message: str
-    datetime: Optional[datetime]
+    datetime: Optional[str]
