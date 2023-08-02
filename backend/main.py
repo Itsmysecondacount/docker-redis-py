@@ -18,9 +18,11 @@ from fastapi.middleware.cors import CORSMiddleware
 TOKEN = "6072798764:AAEHhNTNdmkN6-3eA1lvBInfSo8rRisEDu4"
 CHAT_ID = "5419402277"
 
-def enviar_mensaje(mensaje):
+async def enviar_mensaje(mensaje):
     bot = Bot(token=TOKEN)
     bot.send_message(chat_id=CHAT_ID, text=mensaje)
+
+    return "correcto"
 
 app = FastAPI()
 
@@ -55,7 +57,8 @@ async def post_timbre(timbre: Timbre):
     data["datetime"] = datetime.now()
     response = create_todo(data)
     if response:
-        enviar_mensaje("¡Hola, grupo!")
+        mensaje = await enviar_mensaje("¡Hola, grupo!")
         #Aquí mando una solicitud http al arduino de mi cuarto
+        print(mensaje)
         return response
     raise HTTPException(400, "Something went wrong")
