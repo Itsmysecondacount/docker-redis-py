@@ -20,7 +20,7 @@ CHAT_ID = "5419402277"
 
 async def enviar_mensaje(mensaje):
     bot = Bot(token=TOKEN)
-    bot.send_message(chat_id=CHAT_ID, text=mensaje)
+    await bot.send_message(chat_id=CHAT_ID, text=mensaje)
 
     return "correcto"
 
