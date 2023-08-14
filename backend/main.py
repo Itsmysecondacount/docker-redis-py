@@ -1,5 +1,7 @@
 from fastapi import FastAPI, HTTPException
 
+import requests
+
 from telegram import Bot
 
 from model import Timbre
@@ -57,6 +59,7 @@ async def post_timbre(timbre: Timbre):
     response = create_todo(data)
     if response:
         mensaje = await enviar_mensaje(data["message"])
+        response_2 = requests.get("http://192.168.0.31/toggle")
         # Aquí mando una solicitud http al arduino de mi cuarto
         return response
     raise HTTPException(400, "Something went wrong")
