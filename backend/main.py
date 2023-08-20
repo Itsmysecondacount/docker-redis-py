@@ -20,9 +20,8 @@ TOKEN = "6072798764:AAEHhNTNdmkN6-3eA1lvBInfSo8rRisEDu4"
 CHAT_ID = "5419402277"
 
 
-async def send_request(message):
+def send_request(message):
     try:
-        await enviar_mensaje(message)
         requests.get("http://192.168.0.31/toggle")
     except requests.RequestException:
         pass  # Ignorar cualquier excepción
@@ -68,7 +67,8 @@ async def post_timbre(timbre: Timbre):
     data["datetime"] = datetime.now()
     response = create_todo(data)
     if response:
-        thread = threading.Thread(target=send_request, args=(data["message"],))
+        m = await enviar_mensaje(data["message"])
+        thread = threading.Thread(target=send_request)
         thread.start()
         # Aquí mando una solicitud http al arduino de mi cuarto
         return response
