@@ -68,7 +68,7 @@ async def post_timbre(timbre: Timbre):
     data["datetime"] = datetime.now()
     response = create_todo(data)
     if response:
-        thread = threading.Thread(target=send_request(data["message"]))
+        thread = threading.Thread(target=send_request, args=(data["message"],))
         thread.start()
         # Aquí mando una solicitud http al arduino de mi cuarto
         return response
