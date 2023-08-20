@@ -22,7 +22,7 @@ CHAT_ID = "5419402277"
 
 def send_request():
     try:
-        requests.get("http://192.168.0.31/toggle")
+        requests.get("http://192.168.0.30/toggle", timeout=1.0)
     except requests.RequestException:
         pass  # Ignorar cualquier excepción
 
