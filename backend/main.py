@@ -20,7 +20,7 @@ TOKEN = "6072798764:AAEHhNTNdmkN6-3eA1lvBInfSo8rRisEDu4"
 CHAT_ID = "5419402277"
 
 
-def send_request(message):
+def send_request():
     try:
         requests.get("http://192.168.0.31/toggle")
     except requests.RequestException:
