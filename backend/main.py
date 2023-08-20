@@ -1,5 +1,7 @@
 from fastapi import FastAPI, HTTPException
 
+import threading
+
 import requests
 
 from telegram import Bot
@@ -16,6 +18,13 @@ from fastapi.middleware.cors import CORSMiddleware
 
 TOKEN = "6072798764:AAEHhNTNdmkN6-3eA1lvBInfSo8rRisEDu4"
 CHAT_ID = "5419402277"
+
+
+def send_request():
+    try:
+        requests.get("http://192.168.0.31/toggle")
+    except requests.RequestException:
+        pass  # Ignorar cualquier excepción
 
 
 async def enviar_mensaje(mensaje):
@@ -59,7 +68,8 @@ async def post_timbre(timbre: Timbre):
     response = create_todo(data)
     if response:
         mensaje = await enviar_mensaje(data["message"])
-        response_2 = requests.get("http://192.168.0.31/toggle")
+        thread = threading.Thread(target=send_request)
+        thread.start()
         # Aquí mando una solicitud http al arduino de mi cuarto
         return response
     raise HTTPException(400, "Something went wrong")
