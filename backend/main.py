@@ -23,7 +23,7 @@ CHAT_ID = "5419402277"
 def send_request():
     try:
         print("send request whitout response")
-        requests.get("http://192.168.0.30/toggle", timeout=1.0)
+        requests.get("http://192.168.0.30/toggle", timeout=2.5)
     except requests.RequestException:
         pass  # Ignorar cualquier excepción
 
@@ -68,9 +68,9 @@ async def post_timbre(timbre: Timbre):
     data["datetime"] = datetime.now()
     response = create_todo(data)
     if response:
-        m = await enviar_mensaje(data["message"])
         thread = threading.Thread(target=send_request)
         thread.start()
+        m = await enviar_mensaje(data["message"])
         # Aquí mando una solicitud http al arduino de mi cuarto
         return response
     raise HTTPException(400, "Something went wrong")
