@@ -17,7 +17,7 @@ from database import fetch_all_todos, create_todo
 from fastapi.middleware.cors import CORSMiddleware
 
 TOKEN = "6072798764:AAEHhNTNdmkN6-3eA1lvBInfSo8rRisEDu4"
-CHAT_ID = "5419402277"
+CHAT_ID = "-1001616071693"
 
 
 def send_request():
